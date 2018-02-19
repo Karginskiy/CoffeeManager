@@ -38,19 +38,21 @@ public class StatsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-
         View view = inflater.inflate(R.layout.fragment_stats, container, false);
 
         editText2 = view.findViewById(R.id.stats1);
         editText = view.findViewById(R.id.stats);
-
         editText2.setText(LocalDate.now().toString());
         editText.setText(LocalDate.now().toString());
 
-
         datePickerDialog = new DatePickerDialog(view.getContext());
 
+        setEditTextListeners();
+        return view;
+    }
+
+    @TargetApi(Build.VERSION_CODES.N)
+    private void setEditTextListeners() {
         editText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,21 +78,5 @@ public class StatsFragment extends Fragment {
                 });
             }
         });
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            datePickerDialog = new DatePickerDialog(view.getContext());
-            datePickerDialog.setOnDateSetListener(new DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                    editText.setText(String.format("%d, %d %d", i, i1, i2));
-                }
-            });
-        }
-
-        LocalDate now = LocalDate.now();
-
-        editText.setText(now.toString());
-
-        return view;
     }
 }
