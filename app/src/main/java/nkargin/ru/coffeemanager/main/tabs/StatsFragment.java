@@ -23,15 +23,15 @@ public class StatsFragment extends Fragment {
     private DatePickerDialog datePickerDialog;
     private EditText editText;
     private EditText editText2;
+    private static StatsFragment INSTANCE;
 
     public StatsFragment() {}
 
-    // TODO: Rename and change types and number of parameters
     public static StatsFragment newInstance() {
-        StatsFragment fragment = new StatsFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
+        if (INSTANCE == null) {
+            INSTANCE = new StatsFragment();
+        }
+        return INSTANCE;
     }
 
     @TargetApi(Build.VERSION_CODES.O)

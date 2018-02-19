@@ -19,13 +19,16 @@ import static android.databinding.DataBindingUtil.inflate;
 public class WorkFragment extends Fragment {
 
     private GoodsDomain goodsDomain;
+    private static WorkFragment INSTANCE;
 
     public WorkFragment() {}
 
     public static WorkFragment newInstance() {
-        WorkFragment fragment = new WorkFragment();
-        fragment.goodsDomain = new GoodsDomain();
-        return fragment;
+        if (INSTANCE == null) {
+            INSTANCE = new WorkFragment();
+            INSTANCE.goodsDomain = new GoodsDomain();
+        }
+        return INSTANCE;
     }
 
     @Override
